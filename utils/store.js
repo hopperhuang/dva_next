@@ -30,12 +30,14 @@ function createDvaStore() {
 function getOrCreateStore(req) {
   const isServer = checkServer(req);
   if (isServer) { // run in server
+    console.log('server');
     return createDvaStore();
   }
   // eslint-disable-next-line
   if (!window[__NEXT_DVA_STORE__]) {
+    console.log('client');
     // eslint-disable-next-line
-      window[__NEXT_DVA_STORE__] = createDvaStore()
+    window[__NEXT_DVA_STORE__] = createDvaStore();
   }
   // eslint-disable-next-line
   return window[__NEXT_DVA_STORE__];
@@ -44,22 +46,25 @@ function getOrCreateStore(req) {
 export default function withDva(...args) {
   return function CreateNextPage(Component) {
     const ComponentWithDva = (props = {}) => {
-      const { store } = props;
+      const { store, initialProps } = props;
       const ConnectedComponent = connect(...args)(Component);
       return React.createElement(
         Provider,
         { store: store && store.dispatch ? store : getOrCreateStore() },
-        React.createElement(ConnectedComponent),
+        React.createElement(ConnectedComponent, initialProps),
       );
     };
     ComponentWithDva.getInitialProps = async (props = {}) => {
       const isServer = checkServer();
       const store = getOrCreateStore(props.req);
       // call children's getInitialProps
-      if (Component.getInitialProps) {
-        await Component.getInitialProps({ ...props, isServer, store });
-      }
-      return { store };
+      const initialProps = Component.getInitialProps
+        ? await Component.getInitialProps({ ...props, isServer, store })
+        : {};
+      return {
+        store,
+        initialProps,
+      };
     };
     return ComponentWithDva;
   };
