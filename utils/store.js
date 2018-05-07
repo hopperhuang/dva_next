@@ -51,6 +51,7 @@ export default function withDva(...args) {
       return React.createElement(
         Provider,
         { store: store && store.dispatch ? store : getOrCreateStore() },
+        // transfer next.js's props to the page
         React.createElement(ConnectedComponent, initialProps),
       );
     };
@@ -58,6 +59,7 @@ export default function withDva(...args) {
       const isServer = checkServer();
       const store = getOrCreateStore(props.req);
       // call children's getInitialProps
+      // get initProps and transfer in to the page
       const initialProps = Component.getInitialProps
         ? await Component.getInitialProps({ ...props, isServer, store })
         : {};
