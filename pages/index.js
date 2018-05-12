@@ -46,6 +46,11 @@ class Page extends React.Component {
         <style jsx>{`
           .index {
             font-size: 28px;
+            .red {
+              display: flex;
+              color: red;
+              font-size: 26px;
+            }
           }
           .addButton {
             width: 375px;
@@ -58,9 +63,6 @@ class Page extends React.Component {
           }
           .minusButton :gloabl(.am-button) {
             font-size: 26px;
-          }
-          .red {
-            color: red;
           }
         `}
         </style>
