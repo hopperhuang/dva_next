@@ -15,7 +15,8 @@ export default class extends Document {
 
           <script src="/static/hd.min.js" />
           <script src="/static/caculate.js" />
-          <link rel="stylesheet" type="text/css" href="//unpkg.com/antd-mobile/dist/antd-mobile.min.css" />
+          <link rel='stylesheet' type='text/css' href='/static/stylesheet/antd-mobile.css' />
+          {/* <link rel="stylesheet" type="text/css" href="//unpkg.com/antd-mobile/dist/antd-mobile.min.css" /> */}
         </Head>
         <body style={{ margin: 0 }}>
           <Main />
