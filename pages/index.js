@@ -26,7 +26,7 @@ class Page extends React.Component {
     return (
       <div>
       Hi,{name}!! &nbsp;
-        <p>count:&nbsp; {count}</p>
+        <p className="red" >count:&nbsp; {count}</p>
         <p>
           <button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: 1 }); }} >
         plus
@@ -42,6 +42,12 @@ class Page extends React.Component {
             <a>Go to /users</a>
           </Link>
         </p>
+        <style jsx>{`
+          .red {
+            color: red;
+          }
+        `}
+        </style>
       </div>
     );
   }
