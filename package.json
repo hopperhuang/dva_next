@@ -28,7 +28,7 @@
     "svg-sprite-loader": "^3.7.3"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.2",
+    "babel-eslint": "^8.2.3",
     "babel-plugin-module-resolver": "^3.1.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",

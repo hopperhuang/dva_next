@@ -28,21 +28,21 @@ class Page extends React.Component {
       <div className="index" >
       Hi,{name}!! &nbsp;
         <p className="red" >count:&nbsp; {count}</p>
-          <p className="addButton" >
-            <Button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: 1 }); }} >
+        <p className="addButton" >
+          <Button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: 1 }); }} >
         plus
-            </Button>
-          </p>
-            <p className="minusButton" >
-              <Button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: -1 }); }} >
+          </Button>
+        </p>
+        <p className="minusButton" >
+          <Button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: -1 }); }} >
           minus
-              </Button>
-            </p>
-              <p>
-                <Link href="/users">
-                  <a>Go to /users</a>
-                </Link>
-              </p>
+          </Button>
+        </p>
+        <p>
+          <Link href="/users">
+            <a>Go to /users</a>
+          </Link>
+        </p>
         <style jsx>{`
           .index {
             font-size: 28px;
