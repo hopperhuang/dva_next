@@ -5,15 +5,21 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "next"
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
   },
   "author": "hopperhuang",
   "license": "ISC",
   "dependencies": {
+    "antd-mobile": "^2.1.8",
+    "babel-plugin-import": "^1.7.0",
     "dva-no-router": "^1.0.3",
     "next": "^5.0.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "require-hacker": "^3.0.1",
+    "svg-sprite-loader": "^3.7.3"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

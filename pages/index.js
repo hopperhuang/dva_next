@@ -1,6 +1,7 @@
 
 import Link from 'next/link';
 import React from 'react';
+import { Button } from 'antd-mobile';
 import WithDva from '../utils/store';
 
 class Page extends React.Component {
@@ -24,18 +25,18 @@ class Page extends React.Component {
     const { name, count } = index;
     // console.log('rendered!!');
     return (
-      <div>
+      <div className="index" >
       Hi,{name}!! &nbsp;
         <p className="red" >count:&nbsp; {count}</p>
-        <p>
-          <button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: 1 }); }} >
+        <p className="addButton" >
+          <Button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: 1 }); }} >
         plus
-          </button>
+          </Button>
         </p>
-        <p>
-          <button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: -1 }); }} >
+        <p className="minusButton" >
+          <Button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: -1 }); }} >
           minus
-          </button>
+          </Button>
         </p>
         <p>
           <Link href="/users">
@@ -43,6 +44,21 @@ class Page extends React.Component {
           </Link>
         </p>
         <style jsx>{`
+          .index {
+            font-size: 28px;
+          }
+          .addButton {
+            width: 375px;
+          }
+          .addButton :gloabl(.am-button) {
+            font-size: 26px;
+          }
+          .minusButton {
+            width: 375px;
+          }
+          .minusButton :gloabl(.am-button) {
+            font-size: 26px;
+          }
           .red {
             color: red;
           }

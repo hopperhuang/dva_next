@@ -1,12 +1,21 @@
 {
-    "presets": [
-      "next/babel"
-    ],
-    "plugins": [
-      ["module-resolver", {
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
         "alias": {
           "dva": "dva-no-router"
         }
-      }]
+      }
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile"
+      }
     ]
-  }
+  ]
+}
