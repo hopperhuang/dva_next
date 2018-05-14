@@ -22,6 +22,7 @@ class Page extends React.Component {
 
   render() {
     const { index } = this.props;
+    // console.log(this.props);
     const { name, count } = index;
     // console.log('rendered!!');
     return (

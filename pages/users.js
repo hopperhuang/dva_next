@@ -1,16 +1,24 @@
 
-import Link from 'next/link';
+import Router from 'next/router';
+import { Button } from 'antd-mobile';
 
 export default function () {
   return (
-    <div>
-      Users
+    <div className="user" >
+      here is user
       <br />
-      <Link href="/">
-        <a>
-          Back
-        </a>
-      </Link>
+      <Button onClick={() => Router.push('/')} >
+        go back to index
+      </Button>
+      <style jsx>{`
+        .user {
+          font-size: 28px;
+          :global(.am-button) {
+            font-size: 26px;
+          }
+        }
+      `}
+      </style>
     </div>
   );
 }
