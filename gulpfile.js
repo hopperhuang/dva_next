@@ -23,7 +23,8 @@ gulp.task('css', () => {
       minPixelValue: 2,
     }),
   ];
-  return gulp.src(['node_modules/antd-mobile/dist/antd-mobile.css'])
+  return gulp.src(['styles/*.css'])
+  // 暂时不做压缩，用非压缩版本
     .pipe(postcss(processors))
     .pipe(gulp.dest('./static/stylesheet'));
 });

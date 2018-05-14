@@ -17,11 +17,10 @@ export default class extends Document {
           <script src="/static/js/caculate.js" />
           <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js" />
           <script src="/static/js/fastCliackPatch.js" />
+          <link rel="stylesheet" type="text/css" href="/static/stylesheet/normalize.css" />
           <link rel="stylesheet" type="text/css" href="/static/stylesheet/antd-mobile.css" />
-          {/* <link rel="stylesheet" type="text/css"
-         href="//unpkg.com/antd-mobile/dist/antd-mobile.min.css" /> */}
         </Head>
-        <body style={{ margin: 0 }}>
+        <body>
           <Main />
           <NextScript />
         </body>
