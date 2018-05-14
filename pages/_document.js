@@ -1,4 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
+import normalize from 'styles/normalize.css';
+import antdstyles from 'styles/antd-mobile.css';
+
 
 export default class extends Document {
   render() {
@@ -18,10 +21,10 @@ export default class extends Document {
           <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js" />
           <script src="/static/js/fastCliackPatch.js" />
           <link rel="stylesheet" type="text/css" href="/static/stylesheet/antd-mobile.css" />
-          {/* <link rel="stylesheet" type="text/css"
-         href="//unpkg.com/antd-mobile/dist/antd-mobile.min.css" /> */}
         </Head>
-        <body style={{ margin: 0 }}>
+        <body>
+          <style dangerouslySetInnerHTML={{ __html: normalize }} />
+          <style dangerouslySetInnerHTML={{ __html: antdstyles }} />
           <Main />
           <NextScript />
         </body>

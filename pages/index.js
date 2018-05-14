@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Button } from 'antd-mobile';
+
 import WithDva from '../utils/store';
 
 class Page extends React.Component {
@@ -27,6 +28,7 @@ class Page extends React.Component {
     // console.log('rendered!!');
     return (
       <div className="index" >
+
       Hi,{name}!! &nbsp;
         <p className="red" >count:&nbsp; {count}</p>
         <p className="addButton" >

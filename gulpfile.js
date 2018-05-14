@@ -25,6 +25,7 @@ gulp.task('css', () => {
   ];
   return gulp.src(['node_modules/antd-mobile/dist/antd-mobile.css'])
     .pipe(postcss(processors))
-    .pipe(gulp.dest('./static/stylesheet'));
+    .pipe(gulp.dest('./static/stylesheet'))
+    .pipe(gulp.dest('./styles/'));
 });
 gulp.task('default', ['css']);

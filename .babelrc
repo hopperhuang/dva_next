@@ -15,9 +15,18 @@
     [
       "module-resolver",
       {
+        "root": ["."],
         "alias": {
-          "dva": "dva-no-router"
-        }
+          "dva": "dva-no-router",
+          "styles": "./styles"
+        },
+        "cwd": "babelrc"
+      }
+    ],
+    [
+      "wrap-in-js",
+      {
+        "extensions": ["css$", "scss$"]
       }
     ],
     [
@@ -26,5 +35,6 @@
         "libraryName": "antd-mobile"
       }
     ]
-  ]
+  ],
+  "ignore": []
 }
