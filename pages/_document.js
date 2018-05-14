@@ -13,10 +13,10 @@ export default class extends Document {
           <meta name="format-detection" content="email=no" />
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 
-          <script src="/static/hd.min.js" />
-          <script src="/static/caculate.js" />
+          <script src="/static/js/hd.min.js" />
+          <script src="/static/js/caculate.js" />
           <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js" />
-          <script src="/static/fastCliackPatch.js" />
+          <script src="/static/js/fastCliackPatch.js" />
           <link rel="stylesheet" type="text/css" href="/static/stylesheet/antd-mobile.css" />
           {/* <link rel="stylesheet" type="text/css"
          href="//unpkg.com/antd-mobile/dist/antd-mobile.min.css" /> */}
