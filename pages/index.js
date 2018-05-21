@@ -3,9 +3,12 @@ import Link from 'next/link';
 import React from 'react';
 import { Button } from 'antd-mobile';
 import WithDva from '../utils/store';
+import LoginLayoutWrapper from '../components/LoginLayout';
 
 class Page extends React.Component {
   static async getInitialProps(props) {
+    console.log('method is called in components');
+
     // first time run in server side
     // other times run in client side ( client side init with default props
     // console.log('get init props');
@@ -72,4 +75,4 @@ class Page extends React.Component {
   }
 }
 
-export default WithDva((state) => { return { index: state.index }; })(Page);
+export default WithDva((state) => { return { index: state.index }; })(LoginLayoutWrapper(Page));
