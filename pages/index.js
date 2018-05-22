@@ -6,6 +6,10 @@ import WithDva from '../utils/store';
 import LoginLayoutWrapper from '../components/LoginLayout';
 
 class Page extends React.Component {
+  constructor(props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+  }
   static async getInitialProps(props) {
     console.log('method is called in components');
 
@@ -22,6 +26,11 @@ class Page extends React.Component {
       // should not return props or {...props} here, will cause cicular json
       pathname, query, isServer, dvaStore: store,
     };
+  }
+  logout() {
+    this.props.dispatch({
+      type: 'login/logout',
+    });
   }
 
   render() {
@@ -43,6 +52,7 @@ class Page extends React.Component {
           minus
           </Button>
         </p>
+        <p><Button onClick={this.logout} >退出登陆</Button></p>
         <p>
           <Link href="/users">
             <a>Go to /users</a>

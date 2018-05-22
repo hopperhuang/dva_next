@@ -1,4 +1,6 @@
 import React from 'react';
+import Router from 'next/router';
+import auth from '../utils/auth';
 
 // 所有需要登陆的页面都做无感登陆
 function LoginLayoutWrapper(Com) {
@@ -8,9 +10,14 @@ function LoginLayoutWrapper(Com) {
       // console.log('method is called in login layout');
       // 目前这种方式左无感登陆，必须封闭所有在本地进入/login的入口
       // 进入login页面只能通过输入浏览器地址进入，否则res对象在client无法获取，导致错误
-      const { store, pathname, res } = props;
+      const {
+        store, pathname, res, req,
+      } = props;
+      // 获取token
+      const token = auth.getTokenFromCookie(req);
+      console.log(token);
       // 无感登陆
-      await store.dispatch({ type: 'login/autoLogin' });
+      await store.dispatch({ type: 'login/autoLogin', token });
       // check login status
       const reduxState = store.getState();
       const { login } = reduxState;
@@ -18,15 +25,24 @@ function LoginLayoutWrapper(Com) {
       // 如果已经登陆，且目标页面是/login,则重定向到首页/
       if (loginStatus) {
         if (pathname === '/login') {
-          res.writeHead(302, { Location: '/' });
-          res.end();
+          if (res) { // serverside
+            res.writeHead(302, { Location: '/' });
+            res.end();
+          } else { // cliecnt side
+            Router.push('/');
+          }
         }
       }
       // 如果尚未登陆，且目标页面不为/login,则重定向到/login
       if (!loginStatus) {
         if (pathname !== '/login') {
-          res.writeHead(302, { Location: '/login' });
-          res.end();
+          if (res) {
+            res.writeHead(302, { Location: '/login' });
+            res.end();
+          } else {
+            // console.log('redierct in client side');
+            Router.push('/login');
+          }
         }
       }
       // 已经正常登陆，拉去数据
