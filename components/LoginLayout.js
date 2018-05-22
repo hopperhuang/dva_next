@@ -47,7 +47,12 @@ function LoginLayoutWrapper(Com) {
       }
       // 已经正常登陆，拉去数据
       // transport get props and transport to Component
-      const componentInitProps = Com.getInitialProps ? await Com.getInitialProps({ ...props }) : {};
+      let componentInitProps;
+      if (loginStatus) { // 确保已经登录才调用子组件的方法，否则redux状态会错误
+        componentInitProps = Com.getInitialProps ? await Com.getInitialProps({ ...props }) : {};
+      } else {
+        componentInitProps = {};
+      }
       return {
         loginStatus,
         ...componentInitProps,

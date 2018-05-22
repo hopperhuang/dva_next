@@ -2,6 +2,7 @@ import React from 'react';
 import dva, { connect } from 'dva';
 import { Provider } from 'react-redux';
 import model from '../model/index';
+// 参考：https://github.com/zeit/next.js/commit/0697c289f8ab84ca3fc753106a4dfba681cd47a8#diff-5c1e7376baf47b623a7f1f0533af8352
 
 const checkServer = () => Object.prototype.toString.call(global.process) === '[object process]';
 
