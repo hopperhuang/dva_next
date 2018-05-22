@@ -19,6 +19,7 @@ class Page extends React.Component {
     await props.store.dispatch({ type: 'index/init' });
     return {
       // dont use store as property name, it will confilct with initial store
+      // should not return props or {...props} here, will cause cicular json
       pathname, query, isServer, dvaStore: store,
     };
   }

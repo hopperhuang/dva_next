@@ -34,6 +34,7 @@ function createDvaStore(initialState) {
 }
 
 function getOrCreateStore(initialState) {
+  // console.log(initialState);
   const isServer = checkServer();
   if (isServer) { // run in server
     // console.log('server');
@@ -65,7 +66,8 @@ export default function withDva(...args) {
     ComponentWithDva.getInitialProps = async (props = {}) => {
       // console.log('get......');
       const isServer = checkServer();
-      const store = getOrCreateStore(props.req);
+      const store = getOrCreateStore();
+      // console.log(store);
       // call children's getInitialProps
       // get initProps and transfer in to the page
       const initialProps = Component.getInitialProps
