@@ -1,5 +1,7 @@
 import Cookie from 'js-cookie';
 
+// https://github.com/luisrudge/next.js-auth0/blob/master/utils/auth.js
+
 /**
  * 从cookie中获取token
  * @param {Object} req next.js req参数
@@ -10,10 +12,15 @@ const getTokenFromCookie = (req) => {
     const { cookie } = req.headers;
     // 没有设置cookie
     if (!cookie) {
-      return cookie;
+      return undefined;
     } else { // 存在cookie
       // get token from cookie header
-      return 2333;
+      const tokenCookie = cookie.split(';').find(c => c.trim().startsWith('token='));
+      if (!tokenCookie) {
+        return undefined;
+      }
+      const token = tokenCookie.split('=')[1];
+      return token;
     }
   } else { // req 不存在client-side
     console.log('client side');

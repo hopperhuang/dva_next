@@ -8,13 +8,19 @@ const mockLogin = () => {
   return 2333;
 };
 
-// 自动登陆流程，第一次autologin，并设置已经尝试自动登陆,之后进入页面就不需要自动登陆
-// 自动登陆成功，设置login为true
-// 自动登陆失败,设置login为false, 客户端将cookie清除
+// 自动登陆流程，autonlogin
+// 获取cookie，(loginlayout)
+// cookie 为空，则设置state.login 为false
+// cookie 不为空，远程鉴权,并设置state.login状态(effects.autologin)
+// 判断登陆状态(loginlayout)
+// 判断目标进入页面是否login或者/(loginlayout)
+// 根据登陆态和页面位置重定向(loginlayou)  ---> 若登陆状态为false登陆失败,进入/login页面 清除cookies中的token
+// 一切正常，则调用子组件的getInititalProps方法获取数据
+// 渲染页面
 
 // 手动登陆流程
 // 登陆后将login设置为true
-// 登陆失败则不做改变
+// 登陆失败则设置为false
 const model = {
   namespace: 'login',
   state: {
@@ -58,6 +64,7 @@ const model = {
     *autoLogin(action, { put }) {
       // console.log('login!!');
       // 已经登陆则不需要发送请求，检测token是否过期
+      // code to check login or not here
       // 尚未登陆，也就是第一次登陆，通过cookies.token远程验证是否过期
       yield delay(500);
       const { token } = action;
