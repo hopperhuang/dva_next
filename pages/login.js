@@ -7,6 +7,15 @@ import LoginLayoutWrapper from '../components/LoginLayout';
 import auth from '../utils/auth';
 
 class Login extends React.Component {
+  static async getInitialProps(props) {
+    const token = auth.getTokenFromCookie(props.req);
+    if (token) {
+      await props.store.dispatch({
+        type: 'login/changeStateToLogin',
+      });
+    }
+    return {};
+  }
   constructor(props) {
     super(props);
     this.login = this.login.bind(this);
