@@ -39,7 +39,7 @@ const setTokenToCookie = (token) => {
 };
 
 const removeTokenFromCookie = () => {
-  // console.log('remove token!!');
+  console.log('remove token!!');
   Cookie.remove('token');
 };
 

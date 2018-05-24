@@ -17,11 +17,13 @@ function LoginLayoutWrapper(Com) {
       const token = auth.getTokenFromCookie(req);
       console.log(token);
       // 无感登陆
-      await store.dispatch({ type: 'login/autoLogin', token });
+      // 调用子组件方法，通过子组件方法调用effct -> api -> 拉数据 -> 改变login.login
+      const componentInitProps = Com.getInitialProps ? await Com.getInitialProps({ ...props }) : {};
       // check login status
       const reduxState = store.getState();
       const { login } = reduxState;
       const loginStatus = login.login;
+      console.log(loginStatus);
       // 如果已经登陆，且目标页面是/login,则重定向到首页/
       if (loginStatus) {
         if (pathname === '/login') {
@@ -47,12 +49,12 @@ function LoginLayoutWrapper(Com) {
       }
       // 已经正常登陆，拉去数据
       // transport get props and transport to Component
-      let componentInitProps;
-      if (loginStatus) { // 确保已经登录才调用子组件的方法，否则redux状态会错误
-        componentInitProps = Com.getInitialProps ? await Com.getInitialProps({ ...props }) : {};
-      } else {
-        componentInitProps = {};
-      }
+      // let componentInitProps;
+      // if (loginStatus) { // 确保已经登录才调用子组件的方法，否则redux状态会错误
+      //   componentInitProps = Com.getInitialProps ? await Com.getInitialProps({ ...props }) : {};
+      // } else {
+      //   componentInitProps = {};
+      // }
       return {
         loginStatus,
         ...componentInitProps,
