@@ -2,6 +2,11 @@ import React from 'react';
 import Router from 'next/router';
 import auth from '../utils/auth';
 
+// 自动登陆流程
+// 调用子组件getInitprops 方法 -> effect -> api -> request ->checkRequesetResult -> 改变login.state
+// 根据login.state来渲染组件或者重定向页面
+// 一切正常，根据数据渲染页面
+
 // 所有需要登陆的页面都做无感登陆
 function LoginLayoutWrapper(Com) {
   class LoginLayout extends React.Component {
