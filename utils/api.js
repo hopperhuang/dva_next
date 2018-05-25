@@ -75,8 +75,22 @@ const login = ({ username, password }) => {
   });
 };
 
+const getCompany = (token) => {
+  const method = 'GET';
+  const url = '/company/';
+  const headers = {
+    Authorization: token,
+  };
+  return request({
+    url,
+    method,
+    headers,
+  });
+};
+
 const api = {
   login,
+  getCompany,
 };
 
 export default api;

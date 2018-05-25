@@ -28,7 +28,7 @@ function LoginLayoutWrapper(Com) {
       const reduxState = store.getState();
       const { login } = reduxState;
       const loginStatus = login.login;
-      console.log(loginStatus);
+      // console.log(loginStatus);
       // 如果已经登陆，且目标页面是/login,则重定向到首页/
       if (loginStatus) {
         if (pathname === '/login') {

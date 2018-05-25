@@ -1,7 +1,8 @@
 
-import Link from 'next/link';
+// import Link from 'next/link';
 import React from 'react';
-import { Button } from 'antd-mobile';
+// import { Button } from 'antd-mobile';
+import IndexRoute from '../routes/homepage/index';
 import WithDva from '../utils/store';
 // import api from '../utils/api';
 import LoginLayoutWrapper from '../components/LoginLayout';
@@ -42,59 +43,18 @@ class Page extends React.Component {
   render() {
     const { index } = this.props;
     // console.log(this.props);
-    const { name, count } = index;
+    const { companies } = index;
     // console.log('rendered!!');
     return (
-      <div className="index" >
-      Hi,{name}!! &nbsp;
-        <p className="red" >count:&nbsp; {count}</p>
-        <p className="addButton" >
-          <Button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: 1 }); }} >
-        plus
-          </Button>
-        </p>
-        <p className="minusButton" >
-          <Button onClick={() => { this.props.dispatch({ type: 'index/caculate', delta: -1 }); }} >
-          minus
-          </Button>
-        </p>
-        <p><Button onClick={this.logout} >退出登陆</Button></p>
-        <p>
-          <Link href="/users">
-            <a>Go to /users</a>
-          </Link>
-        </p>
-        <p>
-          <Link href="/login">
-            <a>Go to /login</a>
-          </Link>
-        </p>
-        <style jsx>{`
-          .index {
-            font-size: 28px;
-            .red {
-              display: flex;
-              color: red;
-              font-size: 26px;
-            }
-          }
-          .addButton {
-            width: 375px;
-          }
-          .addButton :gloabl(.am-button) {
-            font-size: 26px;
-          }
-          .minusButton {
-            width: 375px;
-          }
-          .minusButton :gloabl(.am-button) {
-            font-size: 26px;
-          }
-        `}
-        </style>
-      </div>
+      <IndexRoute
+        companies={companies}
+      />
     );
   }
 }
 
-export default WithDva((state) => { return { index: state.index }; })(LoginLayoutWrapper(Page));
+export default WithDva((state) => {
+  return {
+    index: state.index,
+  };
+})(LoginLayoutWrapper(Page));

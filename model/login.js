@@ -51,7 +51,7 @@ const model = {
       auth.removeTokenFromCookie();
       yield put({ type: 'changeStateToUnlogin' });
       // eslint-disable-next-line
-      window.location.href = '/login';
+      window.location.href = '/login'; // 必须在window重定向，要清除本地所有状态
     },
   },
 };

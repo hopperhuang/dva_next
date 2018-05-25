@@ -23,7 +23,7 @@ const getTokenFromCookie = (req) => {
       return token;
     }
   } else { // req 不存在client-side
-    console.log('client side');
+    // console.log('client side');
     const token = Cookie.get('token');
     return token;
   }
