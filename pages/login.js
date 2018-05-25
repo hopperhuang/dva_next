@@ -37,22 +37,24 @@ class Login extends React.Component {
     const { username, password } = this.state;
     const checked = this.checkLoginValue(username, password);
     if (checked) {
-      console.log('dispatch a login action!');
+      // console.log('dispatch a login action!');
+      this.props.dispatch({
+        type: 'login/login',
+        username,
+        password,
+      });
     }
-    // this.props.dispatch({
-    //   type: 'login/login',
-    // });
   }
   // eslint-disable-next-line
   checkLoginValue(username, password) {
     const usrLength = username.length;
     const pwdLength = password.length;
     if (usrLength === 0) {
-      Toast.info('请输入您的账号', 2000);
+      Toast.info('请输入您的账号', 1);
       return false;
     }
     if (pwdLength === 0) {
-      Toast.info('请输入您的密码');
+      Toast.info('请输入您的密码', 1);
       return false;
     }
     return true;

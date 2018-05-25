@@ -1,7 +1,10 @@
 $primary-color: black;
 
 // write glolbal style here
-.abc {
-  font-size: 10px;
-  color: $primary-color;
+.am-toast-text {
+  font-size: 30px;
+}
+.am-toast-notice-content .am-toast-text {
+  padding: 18px 30px;
+  border-radius: 6px;
 }

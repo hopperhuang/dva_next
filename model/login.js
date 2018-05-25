@@ -41,7 +41,8 @@ const model = {
   effects: {
     // 手动登陆
     *login(action, { call }) {
-      const authenrizationToken = yield call(login, { username: 'max', password: '123456' });
+      const { username, password } = action;
+      const authenrizationToken = yield call(login, { username, password });
       const checkedReq = yield checkResquetResult(authenrizationToken);
       const { data } = checkedReq;
       if (data) {
