@@ -20,10 +20,8 @@ export default class extends Document {
           <link rel="stylesheet" type="text/css" href="/static/stylesheet/normalize.css" />
           <link rel="stylesheet" type="text/css" href="/static/stylesheet/antd-mobile.css" />
         </Head>
-        <body>
-          <header style={{ fontSize: '.26rem' }} >这里是一个头部,到底是否需要他呢？我们来思考一下吧</header>
+        <body style={{ backgroundColor: '#ffffff' }} >
           <Main />
-          <footer style={{ fontSize: '.26rem' }} >这里是一个底部，我觉得用来投放个广告也是挺好的，你说对吧</footer>
           <NextScript />
         </body>
       </html>
