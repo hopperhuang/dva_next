@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const requireHacker = require('require-hacker');
+const glob = require('glob');
 
 function setupRequireHacker() {
   const webjs = '.web.js';
@@ -30,8 +31,9 @@ module.exports = {
   // eslint-disable-next-line
   webpack: (config, { dev }) => {
     // eslint-disable-next-line
-    config.resolve.extensions = ['.web.js', '.js', '.json'];
+    config.resolve.extensions = ['.web.js', '.js', '.json']; // antd-mobile
 
+    // antd-mobile
     config.module.rules.push(
       {
         test: /\.(svg)$/i,
@@ -50,6 +52,37 @@ module.exports = {
         include: [
           moduleDir('antd-mobile'),
           __dirname,
+        ],
+      },
+    );
+
+    // global style sheet
+    config.module.rules.push(
+      {
+        test: /\.(css|scss)/,
+        loader: 'emit-file-loader',
+        options: {
+          name: 'dist/[path][name].[ext]',
+        },
+      }
+      ,
+      {
+        test: /\.css$/,
+        use: ['babel-loader', 'raw-loader', 'postcss-loader'],
+      }
+      ,
+      {
+        test: /\.s(a|c)ss$/,
+        use: ['babel-loader', 'raw-loader', 'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: ['styles', 'node_modules']
+                .map(d => path.join(__dirname, d))
+                .map(g => glob.sync(g))
+                .reduce((a, c) => a.concat(c), []),
+            },
+          },
         ],
       },
     );

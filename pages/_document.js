@@ -1,4 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document';
+import stylesheet from 'styles/global.scss';
 
 export default class extends Document {
   render() {
@@ -21,6 +22,7 @@ export default class extends Document {
           <link rel="stylesheet" type="text/css" href="/static/stylesheet/antd-mobile.css" />
         </Head>
         <body style={{ backgroundColor: '#ffffff' }} >
+          <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
           <Main />
           <NextScript />
         </body>
