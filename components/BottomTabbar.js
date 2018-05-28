@@ -1,0 +1,89 @@
+import React from 'react';
+import { TabBar } from 'antd-mobile';
+import Router from 'next/router';
+
+function generateIconStyle(backgroundUrl) {
+  return {
+    width: '0.48rem',
+    height: '0.48rem',
+    background: `url(${backgroundUrl}) center center /  0.48rem 0.48rem no-repeat`,
+  };
+}
+
+const indexSelectedIcon = '/static/image/icon_hone@2x.png';
+const indexIcon = '/static/image/HOME@2x.png';
+const logIcon = '/static/image/icon_no_rizhi@2x.png';
+const logSelectedIcon = '/static/image/icon_click_rizhi@2x.png';
+const myinfoIcon = '/static/image/icon_my@2x.png';
+
+class BottomTabbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ifTargetAndCurrentSame = this.ifTargetAndCurrentSame.bind(this);
+    this.navigateTo = this.navigateTo.bind(this);
+  }
+  ifTargetAndCurrentSame(targetUrl) {
+    const url = this.props;
+    return targetUrl === url;
+  }
+  navigateTo(targetUrl) {
+    const same = this.ifTargetAndCurrentSame(targetUrl);
+    if (!same) {
+      Router.push(targetUrl);
+    }
+  }
+  render() {
+    const { url } = this.props;
+    return (
+      <div className="custtomTabbar" >
+        <TabBar>
+          <TabBar.Item
+            key="index"
+            title="首页"
+            icon={<div style={generateIconStyle(indexIcon)} />}
+            selectedIcon={<div style={generateIconStyle(indexSelectedIcon)} />}
+            selected={url === '/' || url === '/index'}
+            onPress={() => {
+                this.navigateTo('/');
+              }}
+          />
+          <TabBar.Item
+            key="log"
+            title="更新日志"
+            icon={<div style={generateIconStyle(logIcon)} />}
+            selectedIcon={<div style={generateIconStyle(logSelectedIcon)} />}
+            selected={url === '/log'}
+            onPress={() => {
+                this.navigateTo('/log');
+              }}
+          />
+          <TabBar.Item
+            key="myinfo"
+            title="我的"
+            icon={<div style={generateIconStyle(myinfoIcon)} />}
+            selectedIcon={<div style={generateIconStyle(myinfoIcon)} />}
+            selected={url === '/info'}
+            onPress={() => {
+                this.navigateTo('/info');
+              }}
+          />
+        </TabBar>
+        <style jsx>{`
+          .custtomTabbar {
+            :global(.am-tab-bar-bar) {
+              height: 98px;
+            }
+            :global(.am-tab-bar-bar .am-tab-bar-tab-title) {
+              font-size: 22px;
+              margin: 8px 0 0 0;
+            }
+          }
+        `}
+        </style>
+      </div>
+    );
+  }
+}
+
+export default BottomTabbar;
+

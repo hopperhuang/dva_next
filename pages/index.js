@@ -1,5 +1,5 @@
 
-// import Link from 'next/link';
+// import Router from 'next/router';
 import React from 'react';
 // import { Button } from 'antd-mobile';
 import IndexRoute from '../routes/homepage/index';
@@ -11,6 +11,7 @@ class Page extends React.Component {
   constructor(props) {
     super(props);
     this.logout = this.logout.bind(this);
+    this.goToCompany = this.goToCompany.bind(this);
   }
   static async getInitialProps(props) {
     console.log('method is called in components');
@@ -28,16 +29,21 @@ class Page extends React.Component {
       pathname, query, isServer, dvaStore: store,
     };
   }
-  componentDidMount() {
-    console.log('did mount');
-  }
-  componentWillUnmount() {
-    console.log('will unmount');
-  }
+  // componentDidMount() {
+  //   console.log('did mount');
+  // }
+  // componentWillUnmount() {
+  //   console.log('will unmount');
+  // }
   logout() {
     this.props.dispatch({
       type: 'login/logout',
     });
+  }
+  // eslint-disable-next-line
+  goToCompany(id) {
+    // Router.push('/company');
+    console.log(id);
   }
 
   render() {
@@ -48,6 +54,8 @@ class Page extends React.Component {
     return (
       <IndexRoute
         companies={companies}
+        goToCompany={this.goToCompany}
+        {...this.props}
       />
     );
   }

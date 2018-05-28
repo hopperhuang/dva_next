@@ -34,7 +34,8 @@
       "react/prop-types": [0],
       "require-yield": [1],
       "react/react-in-jsx-scope": [0],
-      "jsx-a11y/anchor-is-valid": [0]
+      "jsx-a11y/anchor-is-valid": [0],
+      "jsx-a11y/click-events-have-key-events": [0]
     },
     "parserOptions": {
       "ecmaFeatures": {
