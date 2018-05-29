@@ -11,7 +11,8 @@ class Login extends React.Component {
   static async getInitialProps(props) {
     // 进入登陆页面，只要token存在就默认其已经登录，在loginlayout层，将其从定向到/
     const token = auth.getTokenFromCookie(props.req);
-    if (token) {
+    // console.log(token);
+    if (token && token !== 'expired') {
       await props.store.dispatch({
         type: 'login/changeStateToLogin',
       });
@@ -30,6 +31,9 @@ class Login extends React.Component {
   }
   componentDidMount() {
     // 来到登陆页面，说明无感登陆已经失败, 清除存放在cookies中的token(登陆信息)
+    // const { login } = this.props;
+    // const loginstatus = login.login;
+    // console.log(loginstatus);
     console.log('clear token in cookies');
     this.clearToken();
   }

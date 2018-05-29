@@ -20,7 +20,7 @@ function LoginLayoutWrapper(Com) {
       } = props;
       // 获取token
       const token = auth.getTokenFromCookie(req);
-      console.log(token);
+      console.log(token, 'token ll-out');
       // 无感登陆
       // 调用子组件方法，通过子组件方法调用effct -> api -> 拉数据 -> 改变login.login
       const componentInitProps = Com.getInitialProps ? await Com.getInitialProps({ ...props }) : {};
@@ -33,7 +33,10 @@ function LoginLayoutWrapper(Com) {
       if (loginStatus) {
         if (pathname === '/login') {
           if (res) { // serverside
-            res.writeHead(302, { Location: '/' });
+            // console.log(res.clearCookie);
+            res.writeHead(302, {
+              Location: '/',
+            });
             res.end();
           } else { // cliecnt side
             Router.push('/');
@@ -44,7 +47,7 @@ function LoginLayoutWrapper(Com) {
       if (!loginStatus) {
         if (pathname !== '/login') {
           if (res) {
-            res.writeHead(302, { Location: '/login' });
+            res.writeHead(302, { Location: '/login', 'Set-Cookie': 'token=expired' });
             res.end();
           } else {
             // console.log('redierct in client side');
