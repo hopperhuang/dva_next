@@ -1,5 +1,5 @@
 
-// import Router from 'next/router';
+import Router from 'next/router';
 import React from 'react';
 // import { Button } from 'antd-mobile';
 import IndexRoute from '../routes/homepage/index';
@@ -42,8 +42,12 @@ class Page extends React.Component {
   }
   // eslint-disable-next-line
   goToCompany(id) {
-    // Router.push('/company');
-    console.log(id);
+    Router.push({
+      pathname: '/company',
+      query: {
+        id,
+      },
+    });
   }
 
   render() {

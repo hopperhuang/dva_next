@@ -88,9 +88,23 @@ const getCompany = (token) => {
   });
 };
 
+const getServiceByCompanyId = ({ id, token }) => {
+  const method = 'GET';
+  const url = `/service/?company_id=${id}`;
+  const headers = {
+    Authorization: token,
+  };
+  return request({
+    url,
+    method,
+    headers,
+  });
+};
+
 const api = {
   login,
   getCompany,
+  getServiceByCompanyId,
 };
 
 export default api;
