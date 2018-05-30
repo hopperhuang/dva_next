@@ -30,7 +30,7 @@ class Company extends React.Component {
     console.log(id);
   }
   componentWillUnmount() {
-    this.props.dispatch({ type: 'ompany/clearData' });
+    this.props.dispatch({ type: 'company/clearData' });
   }
   render() {
     return (

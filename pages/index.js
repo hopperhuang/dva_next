@@ -29,9 +29,9 @@ class Page extends React.Component {
       pathname, query, isServer, dvaStore: store,
     };
   }
-  // componentDidMount() {
-  //   console.log('did mount');
-  // }
+  componentDidMount() {
+    Router.prefetch('/company');
+  }
   // componentWillUnmount() {
   //   console.log('will unmount');
   // }

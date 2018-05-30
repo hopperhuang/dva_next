@@ -1,11 +1,13 @@
 
 // import Router from 'next/router';
 import React from 'react';
+import Router from 'next/router';
 import { Toast } from 'antd-mobile';
 import WithDva from '../utils/store';
 import LoginRoute from '../routes/login';
 import LoginLayoutWrapper from '../components/LoginLayout';
 import auth from '../utils/auth';
+
 
 class Login extends React.Component {
   static async getInitialProps(props) {
@@ -35,6 +37,8 @@ class Login extends React.Component {
     // const loginstatus = login.login;
     // console.log(loginstatus);
     console.log('clear token in cookies');
+    Router.prefetch('/log');
+    Router.prefetch('/index');
     this.clearToken();
   }
   login() {
