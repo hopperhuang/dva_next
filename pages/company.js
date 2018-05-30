@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'next/router';
 import WithDva from '../utils/store';
 import LoginLayoutWrapper from '../components/LoginLayout';
 import CompanyRoute from '../routes/company/index';
@@ -15,12 +16,29 @@ class Company extends React.Component {
       pathname, query, isServer, dvaStore: store,
     };
   }
+  constructor(props) {
+    super(props);
+    this.goBackToHomePage = this.goBackToHomePage.bind(this);
+    this.seeServiceById = this.seeServiceById.bind(this);
+  }
+  // eslint-disable-next-line
+  goBackToHomePage() {
+    Router.push('/');
+  }
+  // eslint-disable-next-line
+  seeServiceById(id) {
+    console.log(id);
+  }
   componentWillUnmount() {
     this.props.dispatch({ type: 'ompany/clearData' });
   }
   render() {
     return (
-      <CompanyRoute {...this.props} />
+      <CompanyRoute
+        goBackToHomePage={this.goBackToHomePage}
+        seeServiceById={this.seeServiceById}
+        {...this.props}
+      />
     );
   }
 }
