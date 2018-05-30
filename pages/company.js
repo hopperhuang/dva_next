@@ -9,10 +9,14 @@ class Company extends React.Component {
       pathname, query, isServer, store, req,
     } = props;
     const { id } = query;
+    await props.store.dispatch({ type: 'company/clearData' });
     await props.store.dispatch({ type: 'company/init', req, id });
     return {
       pathname, query, isServer, dvaStore: store,
     };
+  }
+  componentWillUnmount() {
+    this.props.dispatch({ type: 'ompany/clearData' });
   }
   render() {
     return (

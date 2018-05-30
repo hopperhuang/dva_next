@@ -12,6 +12,11 @@ function *checkResquetResult(response) {
     return response;
   } else {
     const { code } = response.err;
+    // 101的情况下，也正常返回，因为只是没有找到数据
+    if (code === 101) {
+      yield put({ type: 'login/changeStateToLogin' });
+      return { data: [] };
+    }
     if (code) { // 参数错误
       if (!isServer) {
         Toast.info('登陆失败', 2);
