@@ -114,11 +114,54 @@ const getServiceByCompanyId = ({ id, token }) => {
   });
 };
 
+// 获取service 信息 --> is_short
+const getServiceInfoByServiceId = ({ id, token }) => {
+  const method = 'GET';
+  const url = `/service/${id}`;
+  const headers = {
+    Authorization: token,
+  };
+  return request({
+    url,
+    method,
+    headers,
+  });
+};
+
+const getDeployInfoByServiceId = ({ id, token }) => {
+  const method = 'GET';
+  const url = `/task/nodelist?service_id=${id}`;
+  const headers = {
+    Authorization: token,
+  };
+  return request({
+    method,
+    url,
+    headers,
+  });
+};
+
+const getPackageInfoByServiceId = ({ id, token }) => {
+  const method = 'GET';
+  const url = `/version/?service_id=${id}`;
+  const headers = {
+    Authorization: token,
+  };
+  return request({
+    method,
+    url,
+    headers,
+  });
+};
+
 const api = {
   login,
   getCompany,
   getServiceByCompanyId,
   getCompanyInfoById,
+  getServiceInfoByServiceId,
+  getDeployInfoByServiceId,
+  getPackageInfoByServiceId,
 };
 
 export default api;

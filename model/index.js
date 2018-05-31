@@ -3,6 +3,7 @@ import login from './login';
 import log from './log';
 import company from './company';
 import info from './info';
+import service from './service';
 
 const model = [
   homepage,
@@ -10,6 +11,7 @@ const model = [
   log,
   company,
   info,
+  service,
 ];
 
 export default model;

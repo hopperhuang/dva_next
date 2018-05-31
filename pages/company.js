@@ -27,7 +27,13 @@ class Company extends React.Component {
   }
   // eslint-disable-next-line
   seeServiceById(id) {
-    console.log(id);
+    // console.log(id);
+    Router.push({
+      pathname: '/service',
+      query: {
+        id,
+      },
+    });
   }
   componentWillUnmount() {
     this.props.dispatch({ type: 'company/clearData' });
