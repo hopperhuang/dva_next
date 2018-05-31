@@ -9,16 +9,15 @@ const { getCompany } = api;
 const model = {
   namespace: 'index',
   state: {
-    name: 'hopperhuang',
-    count: 0,
     init: false,
     companies: [],
   },
   reducers: {
-    caculate(state, payload) {
-      const { count } = state;
-      const { delta } = payload;
-      return { ...state, count: count + delta };
+    clearData() {
+      return {
+        init: false,
+        companies: [],
+      };
     },
     changeInitToTrue(state) {
       return { ...state, init: true };

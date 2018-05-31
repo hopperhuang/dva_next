@@ -4,6 +4,7 @@ const model = {
   namespace: 'info',
   state: {
     name: '',
+    nickname: '',
     init: false,
   },
   reducers: {
@@ -12,8 +13,15 @@ const model = {
     },
     saveData(state, payload) {
       const { decodedInfo } = payload;
-      const { username } = decodedInfo;
-      return { ...state, name: username };
+      const { username, nickname } = decodedInfo;
+      return { ...state, name: username, nickname };
+    },
+    clearData() {
+      return {
+        name: '',
+        nickname: '',
+        init: false,
+      };
     },
   },
   effects: {
@@ -23,6 +31,7 @@ const model = {
       if (!init) {
         const { token } = action;
         const decodedInfo = jwtDecode(token);
+        // console.log(decodedInfo);
         yield put({ type: 'saveData', decodedInfo });
         yield put({ type: 'changeInitToTrue' });
       }

@@ -2,6 +2,7 @@ import React from 'react';
 // import Router from 'next/router';
 import WithDva from '../utils/store';
 import LoginLayoutWrapper from '../components/LoginLayout';
+import InfoRoute from '../routes/info/index';
 import auth from '../utils/auth';
 
 class Info extends React.Component {
@@ -14,6 +15,7 @@ class Info extends React.Component {
     const reduxState = store.getState();
     const { login } = reduxState;
     const loginStatus = login.login;
+    // token不存在则不解码，没有登陆也不解码
     if (token && loginStatus) {
       await store.dispatch({ type: 'info/getUserInfoByToken', token });
     }
@@ -21,11 +23,14 @@ class Info extends React.Component {
       pathname, query, isServer, dvaStore: store,
     };
   }
+  logout = () => {
+    this.props.dispatch({
+      type: 'login/logout',
+    });
+  }
   render() {
-    const { info } = this.props;
-    const { name } = info;
     return (
-      <div>{name}</div>
+      <InfoRoute {...this.props} logout={this.logout} />
     );
   }
 }

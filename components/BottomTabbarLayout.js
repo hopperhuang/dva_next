@@ -11,7 +11,7 @@ export default function BottomTabbarLayout(Com) {
             <Com {...this.props} />
           </div>
           <div className="bottomBar" >
-            <BottomTabbar url={pathname} />
+            <BottomTabbar pathname={pathname} />
           </div>
           <style jsx>{`
           .contentArea {

@@ -23,8 +23,8 @@ class BottomTabbar extends React.Component {
     this.navigateTo = this.navigateTo.bind(this);
   }
   ifTargetAndCurrentSame(targetUrl) {
-    const url = this.props;
-    return targetUrl === url;
+    const { pathname } = this.props;
+    return targetUrl === pathname;
   }
   navigateTo(targetUrl) {
     const same = this.ifTargetAndCurrentSame(targetUrl);
@@ -33,7 +33,7 @@ class BottomTabbar extends React.Component {
     }
   }
   render() {
-    const { url } = this.props;
+    const { pathname } = this.props;
     return (
       <div className="custtomTabbar" >
         <TabBar>
@@ -42,7 +42,7 @@ class BottomTabbar extends React.Component {
             title="首页"
             icon={<div style={generateIconStyle(indexIcon)} />}
             selectedIcon={<div style={generateIconStyle(indexSelectedIcon)} />}
-            selected={url === '/' || url === '/index'}
+            selected={pathname === '/' || pathname === '/index'}
             onPress={() => {
                 this.navigateTo('/');
               }}
@@ -52,7 +52,7 @@ class BottomTabbar extends React.Component {
             title="更新日志"
             icon={<div style={generateIconStyle(logIcon)} />}
             selectedIcon={<div style={generateIconStyle(logSelectedIcon)} />}
-            selected={url === '/log'}
+            selected={pathname === '/log'}
             onPress={() => {
                 this.navigateTo('/log');
               }}
@@ -62,7 +62,7 @@ class BottomTabbar extends React.Component {
             title="我的"
             icon={<div style={generateIconStyle(myinfoIcon)} />}
             selectedIcon={<div style={generateIconStyle(myinfoIcon)} />}
-            selected={url === '/info'}
+            selected={pathname === '/info'}
             onPress={() => {
                 this.navigateTo('/info');
               }}

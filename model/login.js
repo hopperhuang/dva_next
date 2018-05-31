@@ -7,7 +7,7 @@ import api from '../utils/api';
 
 const { login } = api;
 
-const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+// const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 
 // 手动登陆流程
@@ -47,11 +47,16 @@ const model = {
     // 退出登陆
     *logout(action, { put }) {
       // console.log('logout!!');
-      yield delay(500);
+      // yield delay(500);
       auth.removeTokenFromCookie();
       yield put({ type: 'changeStateToUnlogin' });
+      // clear data in models
+      yield put({ type: 'index/clearData' });
+      yield put({ type: 'company/clearData' });
       // eslint-disable-next-line
-      window.location.href = '/login'; // 必须在window重定向，要清除本地所有状态
+      // window.location.href = '/login'; // 必须在window重定向，要清除本地所有状态
+      Router.push('/login');
+      yield put({ type: 'info/clearData' });
     },
   },
 };
