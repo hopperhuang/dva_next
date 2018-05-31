@@ -11,7 +11,7 @@ export default class CompanyRoute extends React.Component {
     };
   }
   componentDidMount() {
-    console.log('set');
+    // console.log('set');
     const isServer = checkServer();
     if (!isServer) {
       // eslint-disable-next-line
