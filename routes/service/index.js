@@ -29,7 +29,7 @@ class ServiceRoute extends React.Component {
   render() {
     const { service, goBackToCompanyById } = this.props;
     const { servicename, companyId, packageInfoData } = service;
-    console.log(packageInfoData);
+    // console.log(packageInfoData);
     const { height } = this.state;
     return (
       <div className="serviceContainer" style={height > 0 ? { minHeight: `${height}px` } : {}} >
@@ -43,6 +43,8 @@ class ServiceRoute extends React.Component {
           <Tabs
             tabs={tabs}
             initialPage={0}
+            swipeable={false}
+            useOnPan={false}
             // onChange={(tab, index) => { console.log('onChange', index, tab); }}
             // onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
           >
@@ -92,6 +94,9 @@ class ServiceRoute extends React.Component {
               }
               :global(.am-tabs-default-bar-underline) {
                 border: 2px solid #2372FF;
+              }
+              :global(.am-tabs-pane-wrap) {
+                overflow-x: hidden;
               }
             }
         `}

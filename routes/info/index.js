@@ -27,6 +27,7 @@ function InfoRoute(props) {
       <style jsx>{`
         .infoContainer {
           width: 100%;
+          min-height: 1236px;
         }
         .backgourndImage {
           width: 100%;
