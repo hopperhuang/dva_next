@@ -1,9 +1,8 @@
 import { NavBar, Icon } from 'antd-mobile';
 import React from 'react';
 import checkServer from '../../utils/checkServer';
-import ServiceItem from './components/serviceItem';
 
-export default class CompanyRoute extends React.Component {
+class ServiceRoute extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,34 +21,24 @@ export default class CompanyRoute extends React.Component {
     }
   }
   render() {
-    const { company, goBackToHomePage, seeServiceById } = this.props;
+    const { service, goBackToCompanyById } = this.props;
+    const { servicename, companyId } = service;
     const { height } = this.state;
-    // console.log(height);
-    const { companyName, services } = company;
     return (
-      <div className="companyContainer" style={height > 0 ? { minHeight: `${height}px` } : {}} >
-        <div className="companyNavibar" >
-          <NavBar
-            mode="light"
-            icon={<Icon type="left" />}
-            onLeftClick={() => goBackToHomePage()}
-          >{companyName}
-          </NavBar>
-        </div>
-        {services.map(service =>
-          (<ServiceItem
-            key={service.serviceid}
-            servicename={service.servicename}
-            user={service.user}
-            arrowOnClick={() => { seeServiceById(service.serviceid); }}
-          />))}
+      <div className="serviceContainer" style={height > 0 ? { minHeight: `${height}px` } : {}} >
+        <NavBar
+          mode="light"
+          icon={<Icon type="left" />}
+          onLeftClick={() => { goBackToCompanyById(companyId); }}
+        >{servicename}
+        </NavBar>
         <style jsx>{`
-            .companyContainer {
+            .serviceContainer {
                 width: 100%;
                 min-height: 1294px;
                 background-color: #FBFBFB;
             }
-            .companyNavibar {
+            .serviceContainer {
                 :global(.am-navbar) {
                     height: 90px;
                 }
@@ -62,9 +51,11 @@ export default class CompanyRoute extends React.Component {
                     color: #040404;
                 }
             }
-          `}
+        `}
         </style>
       </div>
     );
   }
 }
+
+export default ServiceRoute;
