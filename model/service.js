@@ -9,18 +9,35 @@ const {
 const model = {
   namespace: 'service',
   state: {
-    service: 'no service',
+    servicename: '',
+    companyId: '',
+    deployInfoData: [],
+    packageInfoData: [],
   },
   reducers: {
-    changeStateToLogin(state) {
-      const newState = { ...state };
-      newState.login = true;
-      return { ...newState };
+    clearData() {
+      return {
+        servicename: '',
+        companyId: '',
+        deployInfoData: [],
+        packageInfoData: [],
+      };
     },
-    changeStateToUnlogin(state) {
-      const newState = { ...state };
-      newState.login = false;
-      return { ...newState };
+    saveData(state, action) {
+      const oldDeployInfoData = state.deployInfoData;
+      const oldPackageInfoData = state.packageInfoData;
+      const {
+        deployInfoData, packageInfoData, servicename, companyId,
+      } = action;
+      const newDeployInfoData = oldDeployInfoData.concat(deployInfoData);
+      const newPackageInfoData = oldPackageInfoData.concat(packageInfoData);
+      return {
+        ...state,
+        servicename,
+        companyId,
+        deployInfoData: newDeployInfoData,
+        packageInfoData: newPackageInfoData,
+      };
     },
   },
   effects: {
@@ -38,13 +55,20 @@ const model = {
         const firstData = serviceInfoData[0];
         const isShort = firstData.is_short;
         // 根据ishort去判断是否获取打包信息
+        let packageInfoData = [];
         if (!isShort) {
           const packageInfo = yield call(getPackageInfoByServiceId, { token, id });
-          const packageInfoData = packageInfo.data;
-          console.log(serviceInfoData, 'sd');
-          console.log(deployInfoData, 'dd');
-          console.log(packageInfoData, 'pd');
+          packageInfoData = packageInfo.data;
+          // console.log(serviceInfoData, 'sd');
+          // console.log(deployInfoData, 'dd');
+          // console.log(packageInfoData, 'pd');
         }
+        // getservicename
+        const { servicename } = firstData;
+        const companyId = firstData.company[0].id;
+        yield put({
+          type: 'saveData', servicename, deployInfoData, packageInfoData, companyId,
+        });
       } else {
         yield put({ type: 'login/changeStateToUnlogin' });
       }

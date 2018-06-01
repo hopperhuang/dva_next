@@ -11,10 +11,14 @@ class Service extends React.Component {
     } = props;
     const { id } = query;
     const token = auth.getTokenFromCookie(req);
+    await props.store.dispatch({ type: 'service/clearData' });
     await props.store.dispatch({ type: 'service/init', token, id });
     return {
       pathname, query, isServer, dvaStore: store,
     };
+  }
+  componentWillUnmount() {
+    this.props.dispatch({ type: 'service/clearData' });
   }
   render() {
     return (
