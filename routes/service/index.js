@@ -43,8 +43,8 @@ class ServiceRoute extends React.Component {
           <Tabs
             tabs={tabs}
             initialPage={0}
-            swipeable={false}
-            useOnPan={false}
+            // swipeable={false}
+            // useOnPan={false}
             // onChange={(tab, index) => { console.log('onChange', index, tab); }}
             // onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
           >
