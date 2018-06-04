@@ -15,6 +15,7 @@ const indexIcon = '/static/image/HOME@2x.png';
 const logIcon = '/static/image/icon_no_rizhi@2x.png';
 const logSelectedIcon = '/static/image/icon_click_rizhi@2x.png';
 const myinfoIcon = '/static/image/icon_my@2x.png';
+const myinfoSelectedIcon = '/static/image/myinfo@2x.png';
 
 class BottomTabbar extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ class BottomTabbar extends React.Component {
             key="myinfo"
             title="我的"
             icon={<div style={generateIconStyle(myinfoIcon)} />}
-            selectedIcon={<div style={generateIconStyle(myinfoIcon)} />}
+            selectedIcon={<div style={generateIconStyle(myinfoSelectedIcon)} />}
             selected={pathname === '/info'}
             onPress={() => {
                 this.navigateTo('/info');
