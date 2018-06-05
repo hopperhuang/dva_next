@@ -2,6 +2,7 @@ import { NavBar, Icon, Tabs } from 'antd-mobile';
 import React from 'react';
 import checkServer from '../../utils/checkServer';
 import PackageItem from './components/packageItem';
+import DeployItem from './components/deployItem';
 
 const tabs = [
   { title: '编译打包' },
@@ -28,8 +29,9 @@ class ServiceRoute extends React.Component {
   }
   render() {
     const { service, goBackToCompanyById } = this.props;
-    const { servicename, companyId, packageInfoData } = service;
-    // console.log(packageInfoData);
+    const {
+      servicename, companyId, packageInfoData, deployInfoData,
+    } = service;
     const { height } = this.state;
     return (
       <div className="serviceContainer" style={height > 0 ? { minHeight: `${height}px` } : {}} >
@@ -58,7 +60,14 @@ class ServiceRoute extends React.Component {
                   packageSuccess={data.versionissuccessful}
                 />))}
             </div>
-            <div>生产环境部署的内容</div>
+            <div className="deploycontent" >
+              {deployInfoData.map(data => (
+                <DeployItem
+                  key={data.id}
+                  name={data.nodename}
+                  ip={data.ip_private}
+                />))}
+            </div>
           </Tabs>
         </div>
         <style jsx>{`
