@@ -3,7 +3,9 @@ const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const pxtorem = require('postcss-pxtorem');
 const cleanCSS = require('gulp-clean-css');
+const minify = require('gulp-minify');
 
+// css 预处理
 gulp.task('postCss', () => {
   const processors = [
     autoprefixer({
@@ -30,10 +32,23 @@ gulp.task('postCss', () => {
     .pipe(gulp.dest('./static/stylesheet/dev'));
 });
 
+// css 压缩
 gulp.task('compressCss', () => {
   return gulp.src(['static/stylesheet/dev/*.css'])
     .pipe(cleanCSS({ }))
     .pipe(gulp.dest('./static/stylesheet/min'));
+});
+
+gulp.task('compressJs', () => {
+  return gulp.src(['static/js/*.js'])
+    .pipe(minify({
+      ext: {
+        min: '.min.js',
+      },
+      noSource: true,
+      // ignoreFiles: [/\.min\.js$/],
+    }))
+    .pipe(gulp.dest('./static/js/min'));
 });
 
 gulp.task('develop', ['postCss']);

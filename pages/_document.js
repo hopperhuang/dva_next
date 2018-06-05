@@ -2,11 +2,20 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import stylesheet from 'styles/global.scss';
 import generateUrl from '../utils/generateUrl';
 
-const hdJs = generateUrl('/static/js/hd.min.js');
-const calJs = generateUrl('/static/js/caculate.js');
-const fastCliackPatchJs = generateUrl('/static/js/fastCliackPatch.js');
-const normalIzeCss = generateUrl('/static/stylesheet/dev/normalize.css');
-const antdCss = generateUrl('/static/stylesheet/dev/antd-mobile.css');
+const isProduction = process.env.NODE_ENV === 'production';
+const hd = isProduction ? '/static/js/min/hd.min.js' : '/static/js/hd.js';
+const cal = isProduction ? '/static/js/min/caculate.min.js' : '/static/js/caculate.js';
+const fastCliackPatch = isProduction ? '/static/js/min/fastCliackPatch.min.js' : '/static/js/fastCliackPatch.js';
+const fastClick = isProduction ? '/static/js/min/fastClick.min.js' : '/static/js/fastClick.js';
+const normalize = isProduction ? '/static/stylesheet/min/normalize.css' : '/static/stylesheet/dev/normalize.css';
+const antd = isProduction ? '/static/stylesheet/min/antd-mobile.css' : '/static/stylesheet/dev/antd-mobile.css';
+
+const hdJs = generateUrl(hd);
+const calJs = generateUrl(cal);
+const fastCliackPatchJs = generateUrl(fastCliackPatch);
+const fastClickJs = generateUrl(fastClick);
+const normalIzeCss = generateUrl(normalize);
+const antdCss = generateUrl(antd);
 
 export default class extends Document {
   render() {
@@ -23,7 +32,7 @@ export default class extends Document {
 
           <script src={hdJs} />
           <script src={calJs} />
-          <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js" />
+          <script src={fastClickJs} />
           <script src={fastCliackPatchJs} />
           <link rel="stylesheet" type="text/css" href={normalIzeCss} />
           <link rel="stylesheet" type="text/css" href={antdCss} />
