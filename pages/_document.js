@@ -5,8 +5,8 @@ import generateUrl from '../utils/generateUrl';
 const hdJs = generateUrl('/static/js/hd.min.js');
 const calJs = generateUrl('/static/js/caculate.js');
 const fastCliackPatchJs = generateUrl('/static/js/fastCliackPatch.js');
-const normalIzeCss = generateUrl('/static/stylesheet/normalize.css');
-const antdCss = generateUrl('/static/stylesheet/antd-mobile.css');
+const normalIzeCss = generateUrl('/static/stylesheet/dev/normalize.css');
+const antdCss = generateUrl('/static/stylesheet/dev/antd-mobile.css');
 
 export default class extends Document {
   render() {
