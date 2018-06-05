@@ -1,5 +1,8 @@
 import React from 'react';
 import { Button } from 'antd-mobile';
+import generateUrl from '../utils/generateUrl';
+
+const logoImage = generateUrl('/static/image/logo@2x.png');
 
 class LoginRoute extends React.Component {
   render() {
@@ -14,7 +17,7 @@ class LoginRoute extends React.Component {
       <div className="container" >
         <div className="title" >登录</div>
         <div className="logo" >
-          <img src="/static/image/logo@2x.png" alt="logo" />
+          <img src={logoImage} alt="logo" />
         </div>
         <div className="inputs" >
           <p className="usernameinputs" >

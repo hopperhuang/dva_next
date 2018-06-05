@@ -1,6 +1,7 @@
 import React from 'react';
 import { TabBar } from 'antd-mobile';
 import Router from 'next/router';
+import generateUrl from '../utils/generateUrl';
 
 function generateIconStyle(backgroundUrl) {
   return {
@@ -10,12 +11,12 @@ function generateIconStyle(backgroundUrl) {
   };
 }
 
-const indexSelectedIcon = '/static/image/icon_hone@2x.png';
-const indexIcon = '/static/image/HOME@2x.png';
-const logIcon = '/static/image/icon_no_rizhi@2x.png';
-const logSelectedIcon = '/static/image/icon_click_rizhi@2x.png';
-const myinfoIcon = '/static/image/icon_my@2x.png';
-const myinfoSelectedIcon = '/static/image/myinfo@2x.png';
+const indexSelectedIcon = generateUrl('/static/image/icon_hone@2x.png');
+const indexIcon = generateUrl('/static/image/HOME@2x.png');
+const logIcon = generateUrl('/static/image/icon_no_rizhi@2x.png');
+const logSelectedIcon = generateUrl('/static/image/icon_click_rizhi@2x.png');
+const myinfoIcon = generateUrl('/static/image/icon_my@2x.png');
+const myinfoSelectedIcon = generateUrl('/static/image/myinfo@2x.png');
 
 class BottomTabbar extends React.Component {
   constructor(props) {

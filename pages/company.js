@@ -38,6 +38,9 @@ class Company extends React.Component {
   componentWillUnmount() {
     this.props.dispatch({ type: 'company/clearData' });
   }
+  componentDidMount() {
+    Router.prefetch('/service');
+  }
   render() {
     return (
       <CompanyRoute

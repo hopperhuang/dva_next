@@ -1,5 +1,12 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import stylesheet from 'styles/global.scss';
+import generateUrl from '../utils/generateUrl';
+
+const hdJs = generateUrl('/static/js/hd.min.js');
+const calJs = generateUrl('/static/js/caculate.js');
+const fastCliackPatchJs = generateUrl('/static/js/fastCliackPatch.js');
+const normalIzeCss = generateUrl('/static/stylesheet/normalize.css');
+const antdCss = generateUrl('/static/stylesheet/antd-mobile.css');
 
 export default class extends Document {
   render() {
@@ -14,12 +21,12 @@ export default class extends Document {
           <meta name="format-detection" content="email=no" />
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
 
-          <script src="/static/js/hd.min.js" />
-          <script src="/static/js/caculate.js" />
+          <script src={hdJs} />
+          <script src={calJs} />
           <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js" />
-          <script src="/static/js/fastCliackPatch.js" />
-          <link rel="stylesheet" type="text/css" href="/static/stylesheet/normalize.css" />
-          <link rel="stylesheet" type="text/css" href="/static/stylesheet/antd-mobile.css" />
+          <script src={fastCliackPatchJs} />
+          <link rel="stylesheet" type="text/css" href={normalIzeCss} />
+          <link rel="stylesheet" type="text/css" href={antdCss} />
         </Head>
         <body style={{ backgroundColor: '#ffffff' }} >
           <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
