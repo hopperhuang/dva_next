@@ -32,8 +32,8 @@ export default class extends Document {
 
           <script src={hdJs} />
           <script src={calJs} />
-          <script src={fastClickJs} />
-          <script src={fastCliackPatchJs} />
+          <script async src={fastClickJs} />
+          <script async src={fastCliackPatchJs} />
           <link rel="stylesheet" type="text/css" href={normalIzeCss} />
           <link rel="stylesheet" type="text/css" href={antdCss} />
         </Head>
