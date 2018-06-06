@@ -8,7 +8,8 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "compile": "gulp"
+    "compile": "gulp",
+    "deploy": "pm2 start process.config.js --env production"
   },
   "author": "hopperhuang",
   "license": "ISC",
